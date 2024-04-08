@@ -3,34 +3,46 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navBar{
+  border: 1px solid white;
+  position:fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  width: 99.8%;
+  height: 100px;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.txts{
+  border:1px solid white;
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  position:fixed;
+  width: 99.8%;
+  left: 0;
+  height: 500px;
+  top: 100px;
+}
+
+.entradaTxt,
+.salidaTxt{
+  width: 50%;
+  height: 100%;
+  resize: none;
+}
+.btnAnalizar{
+  border: 1px solid white;
+  position: fixed;
+  top:610px;
+  left: 0;
+  padding: 15px;
+  width: 97.8%;
 }
 
 .card {
