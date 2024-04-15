@@ -12,9 +12,28 @@ function App() {
     console.log(Data)
   }
 
-  const handlerAnalizar = () =>{
-
+  const handlerAnalizar = (e:React.MouseEvent<HTMLButtonElement>) =>{
+    e.preventDefault()
+    if (Data != ''){
+      fetch('http://localhost:3000/analizar',{
+        method:'POST',
+        headers:{
+          'Content-Type':'text/plain'
+        },
+        body:Data
+      })
+      .then(res => res.text())
+      .then(response => console.log(response))
+      .catch(error => {
+        // Manejar errores
+        console.error('Error:', error);
+      })
+    } else {
+      alert('SIN INFORMACION A ANALIZAR :)')
+    }
   }
+  
+ 
 
   return (
     <>
