@@ -4,6 +4,7 @@ import './App.css'
 function App() {
 
   const [Data, setData] = useState('')
+  const [Response, setResponse] = useState('')
 
   const handleChange = (e:React.ChangeEvent<HTMLTextAreaElement>) =>{
     setData(
@@ -23,10 +24,13 @@ function App() {
         body:Data
       })
       .then(res => res.text())
-      .then(response => console.log(response))
+      .then(response => {
+        setResponse(response)
+        console.log(response)
+      })
       .catch(error => {
         // Manejar errores
-        console.error('Error:', error);
+        console.log('Error:', error);
       })
     } else {
       alert('SIN INFORMACION A ANALIZAR :)')
@@ -56,7 +60,7 @@ function App() {
       </nav>
       <div className='txts'>
           <textarea className='entradaTxt' value={Data} onChange={handleChange}></textarea>
-          <textarea className='salidaTxt' disabled></textarea>
+          <textarea className='salidaTxt'  value={Response} disabled></textarea>
       </div>
       <div className='btnAnalizar'>
         <button onClick={handlerAnalizar}> Analizar :)</button>

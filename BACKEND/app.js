@@ -20,9 +20,13 @@ app.use(cors(corsOpt))
 
 app.post('/analizar',function(req,res){
     console.log(req.body)
-    let resp = parser.parse(req.body)
-    console.log(resp)
-    res.send("entrada analizada :)")
+    let data = req.body
+    let resp = parser.parse(data)  
+    // console.log(resp)
+    resp.Ejecutar()
+    let resx = resp.Interpretar()
+    console.log(resx)
+    res.send(resx)
 });
 
 app.get('/Tsym',function(req,res){

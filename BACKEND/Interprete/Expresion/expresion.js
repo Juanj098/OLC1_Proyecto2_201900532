@@ -5,5 +5,6 @@ class Exp{
         this.columna = columna;
     }
 
-    interpretar(Ctx){}
+    Interpretar(Ctx){}
 }
+module.exports={Exp}

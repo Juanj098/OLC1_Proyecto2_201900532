@@ -6,6 +6,6 @@ class instruccion{
         this.fila = fila;
         this.columna = columna;
     }
-    interpretar(Ctx){}
+    Interpretar(Ctx){}
 }
 module.exports={instruccion}
