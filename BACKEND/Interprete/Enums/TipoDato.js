@@ -4,7 +4,8 @@ const TypeData = {
     BOOL:['BOOL',2],
     CHAR :['CHAR',3],
     STD_STRING:['STD::STRING',4],
-    ERROR:'ERROR'
+    ERROR:'ERROR',
+    VOID:'VOID'
 }
 
 module.exports={TypeData}

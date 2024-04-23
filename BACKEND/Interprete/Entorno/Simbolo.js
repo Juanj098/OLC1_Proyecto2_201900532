@@ -1,9 +1,9 @@
 class Sym{
-    constructor(name,value,type,typeVar,fila,columna){
+    constructor(name,value,type,typeSym,fila,columna){
         this.name = name;
         this.value = value;
         this.type = type;
-        this.typeVar = typeVar;
+        this.typeVar = typeSym;
         this,fila = fila;
         this.columna = columna;
     }
@@ -13,6 +13,10 @@ class Sym{
 
     actualizarValor(valor){
         this.value =  valor
+    }
+
+    getTipo(tipo){
+        return this.typeVar
     }
 }
 

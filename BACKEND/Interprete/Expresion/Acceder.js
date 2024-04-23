@@ -9,8 +9,9 @@ class Acceder extends Exp{
         const Sym = ctx.getSym(this.id)
         console.log(Sym)
         if(Sym){
-            console.log(Sym.typeVar)
             return({valor:Sym.value,tipo:Sym.type})
+        } else {
+            console.log("variable no declarada")
         }
     }
 }

@@ -11,10 +11,8 @@ class Cout extends instruccion{
             res.valor ==res.valor?"true":"false"
         }
         if(this.ln){
-            res.valor = res.valor.toString()
             consola.push(res.valor+"\n")
         } else {
-            res.valor = res.valor.toString()
             consola.push(res.valor)
         }
         return null

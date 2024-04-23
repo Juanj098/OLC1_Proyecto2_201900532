@@ -13,6 +13,7 @@ class Primitivo extends Exp{
         } else if (/^-?\d+(\.\d+)$/.test(this.valor)){ //double
             return{valor:this.valor,tipo:TypeData.DOUBLE}
         } else if(this.valor == 'true' || this.valor == 'false'){//Bool
+            // let val = this.valor=='true'?true:false;
             return{valor:this.valor,tipo:TypeData.BOOL}
         } else if (/^'([a-zA-Z])'$/.test(this.valor)){ //char
             let valor = this.valor.replace(/'/g,'') 

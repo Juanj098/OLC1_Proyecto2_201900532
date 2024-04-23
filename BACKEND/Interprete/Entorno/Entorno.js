@@ -38,6 +38,14 @@ class Ctx{
             console.log(key, ":", value);
         }
     }
+
+    getGlobal(){
+        let ctx = this
+        while(ctx.padre != null){
+            ctx = ctx.padre
+        }
+        return ctx
+    }
 }
 
 module.exports = {Ctx}
