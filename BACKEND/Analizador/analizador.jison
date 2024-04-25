@@ -83,7 +83,7 @@
     const {Aritmetica} = require("../Interprete/Expresion/Aritmeticas")
     const {Cout} = require("../Interprete/Instrucciones/Cout")
     const {Acceder} = require("../Interprete/Expresion/Acceder")
-    const {Acceder} = require("../Interprete/Expresion/Acceder_Arr")
+    const {Acceder_Arr} = require("../Interprete/Expresion/Acceder_arr")
     const {Logico} = require("../Interprete/Expresion/logicos")
     const {Relacionales} = require("../Interprete/Expresion/Relacionales")
     const {TypeData} = require("../Interprete/Enums/TipoDato")
@@ -183,24 +183,24 @@ ids
 ;
 
 exp
-    :MENOS exp %prec UMINUS                           {$$ = new Aritmetica(new Primitivo(0,0,0),$2,'Menos',@1.first_line,@1.first_column)}
-    |exp MAS exp                                      {$$ = new Aritmetica($1,$3,'Suma',@1.first_line,@1.first_column)}
-    |exp MENOS exp                                    {$$ = new Aritmetica($1,$3,'Menos',@1.first_line,@1.first_column)}
-    |exp POR exp                                      {$$ = new Aritmetica($1,$3,'Por',@1.first_line,@1.first_column)}
-    |exp DIV exp                                      {$$ = new Aritmetica($1,$3,'Div',@1.first_line,@1.first_column)}
-    |exp MOD exp                                      {$$ = new Aritmetica($1,$3,'MOD',@1.first_line,@1.first_column)} 
-    |POW PARIZQ exp COMA exp PARDER                   {$$ = new Aritmetica($3,$5,'Pow',@1.first_line,@1.first_column)}
-    |ID                                               {$$ = new Acceder($1,@1.first_line,@1.first_column)}
-    |V_BOOL                                           {$$ = new Primitivo($1,"BOOL",@1.first_line,@1.first_column)}
-    |V_CADENA                                         {$$ = new Primitivo($1,"STD::STRING",@1.first_line,@1.first_column)}
-    |V_CHAR                                           {$$ = new Primitivo($1,"CHAR",@1.first_line,@1.first_column)}
-    |V_DOUBLE                                         {$$ = new Primitivo($1,"DOUBLE",@1.first_line,@1.first_column)}
-    |V_INT                                            {$$ = new Primitivo($1,"INT",@1.first_line,@1.first_column)}
-    |ID CORIZQ V_INT CORCHDER                         {$$ = new Acceder_Arr($1,$3,null,@1.first_line,@1.first_column)}
-    |ID CORIZQ V_INT CORCHDER CORIZQ V_INT CORCHDER   {$$ = new Acceder_Arr($1,$3,$6,@1.first_line,@1.first_column)}
-    |oplogicos                                        {$$ = $1}
-    |oprelacionales                                   {$$ = $1}
-    |PARIZQ exp PARDER                                {$$ = $2}
+    :MENOS exp %prec UMINUS                                 {$$ = new Aritmetica(new Primitivo(0,0,0),$2,'Menos',@1.first_line,@1.first_column)}
+    |exp MAS exp                                            {$$ = new Aritmetica($1,$3,'Suma',@1.first_line,@1.first_column)}
+    |exp MENOS exp                                          {$$ = new Aritmetica($1,$3,'Menos',@1.first_line,@1.first_column)}
+    |exp POR exp                                            {$$ = new Aritmetica($1,$3,'Por',@1.first_line,@1.first_column)}
+    |exp DIV exp                                            {$$ = new Aritmetica($1,$3,'Div',@1.first_line,@1.first_column)}
+    |exp MOD exp                                            {$$ = new Aritmetica($1,$3,'MOD',@1.first_line,@1.first_column)} 
+    |POW PARIZQ exp COMA exp PARDER                         {$$ = new Aritmetica($3,$5,'Pow',@1.first_line,@1.first_column)}
+    |ID                                                     {$$ = new Acceder($1,@1.first_line,@1.first_column)}
+    |V_BOOL                                                 {$$ = new Primitivo($1,"BOOL",@1.first_line,@1.first_column)}
+    |V_CADENA                                               {$$ = new Primitivo($1,"STD::STRING",@1.first_line,@1.first_column)}
+    |V_CHAR                                                 {$$ = new Primitivo($1,"CHAR",@1.first_line,@1.first_column)}
+    |V_DOUBLE                                               {$$ = new Primitivo($1,"DOUBLE",@1.first_line,@1.first_column)}
+    |V_INT                                                  {$$ = new Primitivo($1,"INT",@1.first_line,@1.first_column)}
+    |ID CORCHIZQ V_INT CORCHDER                             {$$ = new Acceder_Arr($1,$3,null,@1.first_line,@1.first_column)}
+    |ID CORCHIZQ V_INT CORCHDER CORCHIZQ V_INT CORCHDER     {$$ = new Acceder_Arr($1,$3,$6,@1.first_line,@1.first_column)}
+    |oplogicos                                              {$$ = $1}
+    |oprelacionales                                         {$$ = $1}
+    |PARIZQ exp PARDER                                      {$$ = $2}
 ;
 
 oplogicos

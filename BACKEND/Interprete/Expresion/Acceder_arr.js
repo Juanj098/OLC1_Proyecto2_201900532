@@ -7,8 +7,10 @@ class Acceder_Arr extends Exp{
         this.posy = posy
     }
     Interpretar(ctx,consola){
-        if(this.posy!=null){
-            
+        console.log(this.id)
+        const Sym = ctx.getSym("arr")
+        if(Sym){
+            console.log("hola")
         }
     }
 }
