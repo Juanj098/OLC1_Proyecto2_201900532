@@ -1,4 +1,6 @@
 const {instruccion} = require("../Instrucciones/instruccion")
+const {TypeSym} = require("../Enums/TypeSym");
+const { Arreglo } = require("../Expresion/Array");
 class Cout extends instruccion{
     constructor(exp,ln,linea,columna){
         super(linea,columna)
@@ -11,9 +13,36 @@ class Cout extends instruccion{
             res.valor ==res.valor?"true":"false"
         }
         if(this.ln){
-            consola.push(res.valor+"\n")
+            if(res.tipoSym === "ARREGLO" ){
+                if(res.valor.length == 1){
+                    let arre = []
+                    for(let i = 0;i<res.valor.length;i++){
+                        for(let j = 0;j<res.valor[i].length;j++){
+                                // console.log(res.valor[i][j])
+                                arre.push(res.valor[i][j].valor)
+                            }
+                    }
+                    consola.push("\["+arre+"\]"+"\n")
+                } else if(res.valor.length == 2){
+                    let arre = []
+                    for(let i = 0;i<res.valor.length;i++){
+                        let arre2 = []
+                        for(let j =0;j<res.valor[i].length;j++){
+                            arre2.push(res.valor[i][j].valor)
+                        }
+                        arre.push(arre2)
+                    }
+                    consola.push("\["+"\["+arre[0]+"\]"+"\,"+"\["+arre[1]+"\]"+"\]"+"\n")
+                }
+            } else {
+                consola.push(res.valor+"\n")
+            }
         } else {
-            consola.push(res.valor)
+            if(res.tipoSym === "ARREGLO" ){
+                consola.push("\["+res.valor+"\]")
+            } else {
+                consola.push(res.valor)
+            }
         }
         return null
     }

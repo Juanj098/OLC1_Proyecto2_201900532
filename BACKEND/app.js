@@ -19,7 +19,6 @@ app.use(morgan('dev'))
 app.use(cors(corsOpt))
 
 app.post('/analizar',function(req,res){
-    console.log(req.body)
     let data = req.body
     let resp = parser.parse(data)  
     // console.log(resp)

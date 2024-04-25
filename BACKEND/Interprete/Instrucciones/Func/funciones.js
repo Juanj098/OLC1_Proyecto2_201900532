@@ -13,7 +13,7 @@ class Funciones extends instruccion{
     
     Interpretar(ctx,consola){
         const global = ctx.getGlobal()
-        console.log({bloque:this.bloque})
+        // console.log({bloque:this.bloque})
         for(let i = 0;i<this.params.length;i++){
             if(this.params[i].tipo.toUpperCase() == TypeData.INT[0]){
                 this.params[i].tipo=TypeData.INT
@@ -27,7 +27,7 @@ class Funciones extends instruccion{
                 this.params[i].tipo=TypeData.STD_STRING
             }
         }
-        global.addSym(this.id,this,this.tipo,"FUNCION")
+        global.addSym(this.id,this,this.tipo,TypeSym.FUNCION)
         return null
     }
 
