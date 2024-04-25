@@ -13,7 +13,8 @@ class Relacionales extends Exp{
         // [<,>,<=,>=,==,!=]
         //int-double | int-char | double-char | char-int | char-double | char-char 
         if(valIzq != null && valDer != null ){
-            if((valIzq.tipo[0]=='INT' || valIzq.tipo[0]=='DOUBLE' || valIzq.tipo[0]=='CHAR' || valIzq.tipo[0]=='BOOL') && (valDer.tipo[0]=='INT' || valDer.tipo[0]=='DOUBLE' || valDer.tipo[0]=='CHAR' || valDer.tipo[0]=='BOOL')){
+
+            if((valIzq.tipo[0]==TypeData.INT[0] || valIzq.tipo[0]=='DOUBLE' || valIzq.tipo[0]=='CHAR' || valIzq.tipo[0]=='BOOL') && (valDer.tipo[0]==TypeData.INT[0] || valDer.tipo[0]=='DOUBLE' || valDer.tipo[0]=='CHAR' || valDer.tipo[0]=='BOOL')){
                 if (valIzq.tipo[0] === TypeData.INT[0]) {
                     valIzq.valor = parseInt(valIzq.valor);
                 } else if(valIzq.tipo[0]===TypeData.DOUBLE[0]){
@@ -25,6 +26,7 @@ class Relacionales extends Exp{
                 }else if(valDer.tipo[0] === TypeData.DOUBLE[0]){
                     valDer.valor = parseFloat(valDer.valor);
                 }
+
 
                 if(this.opRel == '<'){  
                     return({valor:(valIzq.valor < valDer.valor),tipo:TypeData.BOOL})

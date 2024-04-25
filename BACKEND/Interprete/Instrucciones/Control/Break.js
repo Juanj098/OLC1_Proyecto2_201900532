@@ -4,7 +4,6 @@ class Break extends instruccion{
         super(linea,columna)       
     }
     Interpretar(ctx,consola){
-        console.log('Break')
         return "Break"
     }
 }

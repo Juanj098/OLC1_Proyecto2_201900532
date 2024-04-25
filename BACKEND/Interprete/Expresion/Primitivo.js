@@ -9,9 +9,11 @@ class Primitivo extends Exp{
     }
     Interpretar(Ctx,consola){
         if(/^-?\d+$/.test(this.valor)){ //integer
-            return{valor:this.valor,tipo:TypeData.INT}
+            let valor = parseInt(this.valor) 
+            return{valor:valor,tipo:TypeData.INT}
         } else if (/^-?\d+(\.\d+)$/.test(this.valor)){ //double
-            return{valor:this.valor,tipo:TypeData.DOUBLE}
+            let valor= parseFloat(this.valor)
+            return{valor:valor,tipo:TypeData.DOUBLE}
         } else if(this.valor == 'true' || this.valor == 'false'){//Bool
             // let val = this.valor=='true'?true:false;
             return{valor:this.valor,tipo:TypeData.BOOL}

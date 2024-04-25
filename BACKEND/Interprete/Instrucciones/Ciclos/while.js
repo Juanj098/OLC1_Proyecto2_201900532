@@ -13,10 +13,13 @@ class While extends instruccion{
         }else{
             try {
                 while(cond.valor){
-                    const retorno = this.bloque.Interpretar(ctx,consola)
+                    let  retorno = this.bloque.Interpretar(ctx,consola)
                     if(retorno=="Break"){
-                        console.log({br:'break'})
                         break;
+                    } else if(retorno=="Continue"){
+                        continue;
+                    }else if(retorno=="Return"){
+                        return retorno
                     }
                     cond= this.condicion.Interpretar(ctx)
                 }
@@ -24,6 +27,7 @@ class While extends instruccion{
                 consola.push(error)
             }
         }
+        return null
 
     }
 
