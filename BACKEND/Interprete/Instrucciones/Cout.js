@@ -18,7 +18,6 @@ class Cout extends instruccion{
                     let arre = []
                     for(let i = 0;i<res.valor.length;i++){
                         for(let j = 0;j<res.valor[i].length;j++){
-                                // console.log(res.valor[i][j])
                                 arre.push(res.valor[i][j].valor)
                             }
                     }
@@ -39,7 +38,25 @@ class Cout extends instruccion{
             }
         } else {
             if(res.tipoSym === "ARREGLO" ){
-                consola.push("\["+res.valor+"\]")
+                if(res.valor.length == 1){
+                    let arre = []
+                    for(let i = 0;i<res.valor.length;i++){
+                        for(let j = 0;j<res.valor[i].length;j++){
+                                arre.push(res.valor[i][j].valor)
+                            }
+                    }
+                    consola.push("\["+arre+"\]")
+                } else if(res.valor.length == 2){
+                    let arre = []
+                    for(let i = 0;i<res.valor.length;i++){
+                        let arre2 = []
+                        for(let j =0;j<res.valor[i].length;j++){
+                            arre2.push(res.valor[i][j].valor)
+                        }
+                        arre.push(arre2)
+                    }
+                    consola.push("\["+"\["+arre[0]+"\]"+"\,"+"\["+arre[1]+"\]"+"\]")
+                }
             } else {
                 consola.push(res.valor)
             }

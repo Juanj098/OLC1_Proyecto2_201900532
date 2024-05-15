@@ -6,7 +6,7 @@ class Retorno extends instruccion{
     }
     Interpretar(ctx,consola){
         const expression = this.exp.Interpretar(ctx,consola)
-        return ["Return",expression]
+        return expression
     }
 }
 

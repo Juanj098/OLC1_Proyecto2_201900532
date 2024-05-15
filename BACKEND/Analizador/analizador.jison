@@ -31,6 +31,7 @@
 "Continue"      return 'CONTINUE'
 "Return"        return 'RETURN'
 "EXECUTE"       return 'EXECUTE'
+"SWITCH"        return 'SWITCH'
 
 
 //-> Simbolos
@@ -101,6 +102,7 @@
     const {Decremento} = require("../Interprete/Expresion/decremento")
     const {Exec} = require("../Interprete/Instrucciones/Func/Exec.js")
     const {Arreglo} = require("../Interprete/Expresion/Array")
+    const {ModiArr} = require("../Interprete/Instrucciones/variables/modiArray")
 %}
 // -------> Precedencia
 %right 'NOT'
@@ -128,22 +130,23 @@ instrucciones
 ;
 
 ins
-    :declarar  PYC       {$$=$1}
-    |declarar_arr PYC    {$$=$1}
-    |print     PYC       {$$=$1}
-    |llamada_func PYC    {$$=$1}
-    |fn_func   PYC       {$$=$1}
-    |func_if   PYC       {$$=$1}
-    |c_while   PYC       {$$=$1}
-    |asign     PYC       {$$=$1}
-    |c_for     PYC       {$$=$1}
-    |c_dowhile PYC       {$$=$1}
-    |ins_break PYC       {$$=$1}
-    |ins_conti PYC       {$$=$1}
-    |ins_ret   PYC       {$$=$1}
-    |fun_dec   PYC       {$$=$1}
-    |fun_inc   PYC       {$$=$1}
-    |func_exec PYC       {$$=$1}
+    :declarar   PYC       {$$=$1}
+    |declarar_arr  PYC    {$$=$1}
+    |print      PYC       {$$=$1}
+    |llamada_func  PYC    {$$=$1}
+    |fn_func    PYC       {$$=$1}
+    |func_if    PYC       {$$=$1}
+    |c_while    PYC       {$$=$1}
+    |asign      PYC       {$$=$1}
+    |asignArr   PYC       {$$=$1}
+    |c_for      PYC       {$$=$1}
+    |c_dowhile  PYC       {$$=$1}
+    |ins_break  PYC       {$$=$1}
+    |ins_conti  PYC       {$$=$1}
+    |ins_ret    PYC       {$$=$1}
+    |fun_dec    PYC       {$$=$1}
+    |fun_inc    PYC       {$$=$1}
+    |func_exec  PYC       {$$=$1}
 ;
 
 declarar
@@ -196,8 +199,9 @@ exp
     |V_CHAR                                                 {$$ = new Primitivo($1,"CHAR",@1.first_line,@1.first_column)}
     |V_DOUBLE                                               {$$ = new Primitivo($1,"DOUBLE",@1.first_line,@1.first_column)}
     |V_INT                                                  {$$ = new Primitivo($1,"INT",@1.first_line,@1.first_column)}
-    |ID CORCHIZQ V_INT CORCHDER                             {$$ = new Acceder_Arr($1,$3,null,@1.first_line,@1.first_column)}
-    |ID CORCHIZQ V_INT CORCHDER CORCHIZQ V_INT CORCHDER     {$$ = new Acceder_Arr($1,$3,$6,@1.first_line,@1.first_column)}
+    |ID CORCHIZQ exp CORCHDER                               {$$ = new Acceder_Arr($1,1,$3,null,@1.first_line,@1.first_column)}
+    |ID CORCHIZQ exp CORCHDER CORCHIZQ exp CORCHDER         {$$ = new Acceder_Arr($1,2,$3,$6,@1.first_line,@1.first_column)}
+    |llamada_func                                           {$$ = $1}
     |oplogicos                                              {$$ = $1}
     |oprelacionales                                         {$$ = $1}
     |PARIZQ exp PARDER                                      {$$ = $2}
@@ -294,3 +298,9 @@ c_dowhile
 func_exec
     :EXECUTE llamada_func       {$$ = new Exec($2,@1.first_line,@1.first_column)}
 ;
+
+asignArr
+    :ID CORCHIZQ exp CORCHDER IG exp                                 {$$ = new ModiArr($1,1,$3,null,$6,@1.first_line,@1.first_column)}
+    |ID CORCHIZQ exp CORCHDER CORCHIZQ exp CORCHDER IG exp           {$$ = new ModiArr($1,2,$3,$6,$9,@1.first_line,@1.first_column)}
+;
+

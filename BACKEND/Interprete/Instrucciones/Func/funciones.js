@@ -28,7 +28,6 @@ class Funciones extends instruccion{
             }
         }
         global.addSym(this.id,this,this.tipo,TypeSym.FUNCION)
-        return null
     }
 
     getParams = () => this.params

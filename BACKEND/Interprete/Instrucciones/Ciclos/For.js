@@ -20,12 +20,12 @@ class For extends instruccion{
             } else {
                 while(condicion.valor){
                     let retorno = this.bloque.Interpretar(ctx,consola)
-                    console.log({ret:retorno})
                     if(retorno === "Break"){
                         break;
                     } else if(retorno==='Continue'){
                         continue;
                     }
+                    console.log({ret:retorno})
                     this.decosum.Interpretar(ctx)
                     condicion = this.condi.Interpretar(ctx)
                 }

@@ -22,12 +22,11 @@ class Llamada extends instruccion{
         func.getParams().forEach((param,index)=>{
             const exp = this.args[index].Interpretar(ctx)
             if(exp.tipo[0] != param.tipo[0]){console.log("Error:tipo de parametro no coincide")}
-            console.log({exp:exp})
             ctxFunc.addSym(param.id,exp.valor,exp.tipo,TypeSym.VARIABLE)
         })
         const instruccion = func.getIns()
-        instruccion.Interpretar(ctxFunc,consola)
-        return  null
+        let retorno = instruccion.Interpretar(ctxFunc,consola)
+        return  retorno
     }
 }
 module.exports = {Llamada}

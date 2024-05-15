@@ -13,6 +13,22 @@ function App() {
     console.log(Data)
   }
 
+  const Readsc =(e:React.ChangeEvent<HTMLInputElement>)=>{
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const filereader = new FileReader();
+    filereader.readAsText(file)
+    filereader.onload = () => {
+      console.log(filereader.result)
+      const result = filereader.result;
+      if (result === null) return; // Comprobación condicional para null
+      setData(result as string); // Aserción de tipo
+    }
+    filereader.onerror = () => {
+      console.log('error :)')
+    }
+  }
+
   const handlerAnalizar = (e:React.MouseEvent<HTMLButtonElement>) =>{
     e.preventDefault()
     if (Data != ''){
@@ -45,15 +61,7 @@ function App() {
         <h2>
           Proyecto2
         </h2>
-        <button>
-          Abrir
-        </button>
-        <button>
-          Nuevo
-        </button>
-        <button>
-          Guardar
-        </button>
+        <input  className="fileread" type='file' multiple={false} onChange={Readsc}/>
         <button>
           Resportes
         </button>

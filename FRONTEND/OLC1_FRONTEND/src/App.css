@@ -6,6 +6,12 @@
 
 }
 
+.fileread{
+  margin: 3px;
+  border: 1px solid #242424;
+  padding: 2px;
+}
+
 .navBar{
   border: 1px solid white;
   position:fixed;
